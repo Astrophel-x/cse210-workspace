@@ -11,37 +11,40 @@ class Program
             Console.WriteLine("Welcome to the program!");
         }
 
-        static string PromptUserName(string userName)
+        static string PromptUserName(/*string userName*/)
         {
             Console.Write("Please enter your name: ");
-            userName = Console.ReadLine();
+            string userName = Console.ReadLine();
             return userName;
         }
 
         static int PromptUserNumber()
         {
             Console.Write("Please enter your favourite number: ");
-            return int.Parse(Console.ReadLine());
+            // Parse() converts a string to a diff format, assuming the string is properly formated
+            int PromptUserNumber = int.Parse(Console.ReadLine());
+            return PromptUserNumber;
             // return userNumber;
         }
 
-        static void PromptUserBirthYear(out int userBirthYear)
+        static int PromptUserBirthYear()
         {
             Console.Write("Please enter the year you were born: ");
-            userBirthYear = int.Parse(Console.ReadLine());
+            int userBirthYear = int.Parse(Console.ReadLine());
+            return userBirthYear;
 
 
         }
 
         static int SquareNumber(int num)
         {
-            int square = num * num;
-            return square;
+            int squareNumber = num * num;
+            return squareNumber;
         }
 
-        static void DisplayResult(string userName, int square, int userBirthYear)
+        static void DisplayResult(string userName, int squareNumber, int userBirthYear)
         {
-            Console.WriteLine($"{userName}, the square of your number is {square}.");
+            Console.WriteLine($"{userName}, the square of your number is {squareNumber}.");
             int age = 2026 - userBirthYear;
             Console.WriteLine($"{userName}, you will turn {age} this year.");
         }
@@ -53,7 +56,18 @@ class Program
 
         DisplayWelcome();
 
-        PromptUserName(string userName);
+        string displayUserName = PromptUserName();
+
+        //Console.WriteLine(displayUserName);
+
+        int favNumber = PromptUserNumber();
+
+        int year = PromptUserBirthYear();
+        
+
+        DisplayResult(displayUserName, SquareNumber(favNumber), year);
+
+
 
 
     }
