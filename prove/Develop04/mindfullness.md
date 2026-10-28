@@ -3,7 +3,7 @@
 
 - this is where the menu will be, probably
 
->     Have a menu system to allow the user to choose an activity.
+> Have a menu system to allow the user to choose an activity.
 
 ## BASE CLASS ACTIVITY
 
@@ -15,7 +15,7 @@
 ### DERIVED CLASSES
 
 >     Each activity should start with a common starting message that provides the name of the activity, a description, and asks for and sets the duration of the activity in seconds. Then, it should tell the user to prepare to begin and pause for several seconds.
->    Each activity should end with a common ending message that tells the user they have done a good job, and pause and then tell them the activity they have completed and the length of time and pauses for several seconds before finishing.
+>    Each activity should end with a common ending message that tells the user they have done a good job, and pause and then tell them the activity they have completed and the length of time and pauses for several seconds before finishing. 
 
 ### BreathingActivity
 
