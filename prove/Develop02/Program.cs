@@ -4,7 +4,20 @@ class Program
 {
     static void Main(string[] args)
     {
+
         Console.WriteLine("Hello Develop02 World!");
+
+        //Menu test = new Menu();
+        //test.DisplayAllJournals();
+
+        // set path to main proj folder
+        Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop02");
+
+
+
+
+        Menu menu = new Menu();
+        menu.DisplayMenu();
 
         /* 
         
