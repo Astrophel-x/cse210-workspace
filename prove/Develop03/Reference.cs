@@ -27,14 +27,16 @@ public class Reference
     private int _verse2; 
 
 
-
+// if only 1 verse
     public Reference(string bookName, int chapter, int verse)
     {
         _bookName = bookName;
         _chapter = chapter;
         _verse = verse;
+        _verse2 = 0;
     }
 
+// if a range of verses
     public Reference(string bookName, int chapter, int verse, int verse2)
     {
         _bookName = bookName;
@@ -42,6 +44,19 @@ public class Reference
         _verse = verse;
         _verse2 = verse2;
     }
+    
 
+// getter for ref, return as stringDoctrine and Covenants |
+    public string GetReference()
+    {
+        if (_verse2 == 0)
+        {
+            return $"{_bookName} {_chapter}:{_verse}\n";
+        }
+        else
+        {
+            return $"{_bookName} {_chapter}:{_verse}-{_verse2}\n";
+        }
+    }
 
 }

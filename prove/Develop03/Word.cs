@@ -3,7 +3,7 @@
     *_word string
     * Status (hidden = T/F) - boolean?
     
-> Display if word is hidded write underscores otherwise write the string
+> Display if word is hidden write underscores otherwise write the string
 > Hide updates hidden attribute to true
 */
 public class Word
