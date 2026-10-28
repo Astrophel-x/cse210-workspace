@@ -1,3 +1,6 @@
+// ABOVE AND BEYOND: Allows User to create a new journal (txt file) and swap freely between all the ones that they have created. Allows user to see active journal and swap which journal is active/that they want to write in. 
+
+
 using System;
 
 class Program
