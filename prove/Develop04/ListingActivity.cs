@@ -64,15 +64,6 @@ public class ListingActivity : Activity
 
         // SetCountdown(10);
 
-
-
-
     }
-
-
-
-
-
-
 
 }
