@@ -5,7 +5,7 @@ class Program
     static void Main(string[] args)
     {
         Console.WriteLine("Hello Develop03 World!");
-        Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop03");
+        //Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop03");
 
         bool playing = true;
 

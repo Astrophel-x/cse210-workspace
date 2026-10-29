@@ -7,10 +7,27 @@ public class ScriptureLibrary
 {
     private List<Scripture> _scriptures = new List<Scripture>();
 
-
-    public void LoadScripture(string filepath)
+    string filename = "doctrinalMasterDAndC.txt";
+    string filepathRelative;
+    
+    public void LoadScripture(string filename)
     {
-        string[] lines = File.ReadAllLines(filepath);
+
+        //hopeful pathing fix
+        
+        if (!File.Exists(filename))
+        {
+            filepathRelative = Path.Combine(AppContext.BaseDirectory, "..", "..", "..", filename);
+        }
+        else if (File.Exists(filename))
+        {
+            filepathRelative = "doctrinalMasteryDAndC.txt";
+        }
+
+
+
+
+        string[] lines = File.ReadAllLines(filepathRelative);
         foreach (string line in lines)
         {
             string[] section = line.Split("|");
