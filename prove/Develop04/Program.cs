@@ -9,7 +9,7 @@ class Program
         Console.WriteLine("Hello Develop04 World!");
 
 
-        Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop04");
+        //Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop04");
 
         Menu menu = new Menu();
         menu.DisplayMenu();       
