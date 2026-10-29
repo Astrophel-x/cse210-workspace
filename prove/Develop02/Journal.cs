@@ -13,7 +13,7 @@ public class Journal
 
     public string _displayAll;
 
-    public string _currentFile = "collection.txt";
+    public string _currentFile = "default.txt";
 
 
 

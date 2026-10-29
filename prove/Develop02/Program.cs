@@ -13,8 +13,16 @@ class Program
         //Menu test = new Menu();
         //test.DisplayAllJournals();
 
-        // set path to main proj folder
-        Directory.SetCurrentDirectory("C:/Users/asher/Desktop/CSE 210/cse210-workspace/prove/Develop02");
+        // set path so it works in dotnet run OR debugger
+        
+        while (!File.Exists("default.txt"))
+        {
+            Directory.SetCurrentDirectory("..");
+        }
+
+
+        
+
 
 
 
