@@ -15,7 +15,7 @@ class Program
 
         // set path so it works in dotnet run OR debugger
         
-        while (!File.Exists("default.txt"))
+        while (!File.Exists("Program.cs"))
         {
             Directory.SetCurrentDirectory("..");
         }
