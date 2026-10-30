@@ -5,7 +5,7 @@ public abstract class Goal
 {
     private string _name;
     private string _description;
-    private int _points; //[would be overridden?]
+    private int _points;
 
     //private bool _IsComplete = false;
 
@@ -16,19 +16,24 @@ public abstract class Goal
         _points = points;
     }
 
-    public abstract string GetName();
-    public abstract string GetDescription();
-    public abstract int GetPoints();
+    public string GetName()
+    {
+        return _name;
+    }
+
+    public string GetDescription()
+    {
+        return _description;
+    }
+    public int GetPoints()
+    {
+        return _points;
+    }
 
 
 
     public abstract void RecordEvent();
-
-
-
-
     public abstract string GetStatus();
-
     public abstract bool IsComplete();
 
 //for human eyes, details

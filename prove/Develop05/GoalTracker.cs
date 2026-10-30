@@ -18,7 +18,10 @@ class GoalTracker
         _pointsOverall = 0;
     }
 
-
+    public void RecordPointsOverall()
+    {
+        
+    }
 
 //START THE WHOLE THING!! SHOWS OPTIONS
 // user needs to: 
@@ -35,7 +38,30 @@ class GoalTracker
 */
     public void DisplayMenu()
     {
-        
+        string userInput = "";
+        while (userInput != "8")
+        {
+            Console.WriteLine("Welcome to Eternal Quest.");
+            Console.WriteLine("Please choose from the following options: ");
+            Console.WriteLine("1. Create New Simple Goal.");
+            Console.WriteLine("2. Create New Checklist Goal.");
+            Console.WriteLine("3. Create New Eternal Goal.");
+            Console.WriteLine("4. Record Completed Goal.");
+            Console.WriteLine("Show List of All Goals");
+            Console.WriteLine("5. View Total Score.");
+            Console.WriteLine("6. Save Current Goals and Score");
+            Console.WriteLine("7. Load Other Goal and Score Profile");
+            Console.WriteLine("8. Quit.");
+
+
+            if (userInput == "1")
+            {
+                CreateSimpleGoal();                
+            }
+
+
+
+        }
     }
 
 

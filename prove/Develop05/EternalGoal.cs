@@ -2,16 +2,17 @@
 
 class EternalGoal : Goal
 {
+    private int _iterations;
     public EternalGoal(string name, string description, int points) : base(name, description, points)
     {
-        
+        _iterations = 0;
     }
 
 
 //uh. if tracking how many times completed, would prolly be here. 
     public override void RecordEvent()
     {
-        
+        _iterations ++;
     }
 
 
@@ -21,11 +22,20 @@ class EternalGoal : Goal
 
     }
 
-    public override string GetSaveString()
+    public override string GetStatus()
     {
-        return $"EternalGoal:{GetName()},{GetDescription()},{GetPoints()}";
+        if (_iterations == 1)
+        {
+            return $"Completed {_iterations} time.";
+        }
+        else
+        {
+            return $"Completed {_iterations} times.";
+        }
     }
 
-
-
+    public override string GetSaveString()
+    {
+        return $"EternalGoal:{GetName()},{GetDescription()},{GetPoints()},{_iterations}";
+    }
 }

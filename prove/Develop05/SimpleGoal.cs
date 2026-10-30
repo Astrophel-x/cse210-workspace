@@ -26,7 +26,7 @@ class SimpleGoal : Goal
         }
         else
         {
-            return "[X]";
+            return "[ ]";
         }
     }
 
