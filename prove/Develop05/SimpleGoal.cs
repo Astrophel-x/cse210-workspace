@@ -44,12 +44,12 @@ class SimpleGoal : Goal
     }
 
 
-// default display method doesn't need editing for simplegoal
+// default summary display method doesn't need editing for simplegoal
 
     //to save to file
     public override string GetSaveString()
     {
-        return $"SimpleGoal:{GetName()}, {GetDescription()},{GetPoints()},{_IsComplete}";
+        return $"SimpleGoal:{GetName()},{GetDescription()},{GetPoints()},{_IsComplete}";
     }
 
 
