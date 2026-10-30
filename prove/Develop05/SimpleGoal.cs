@@ -49,7 +49,7 @@ class SimpleGoal : Goal
     //to save to file
     public override string GetSaveString()
     {
-        return $"SimpleGoal:{GetName()},{GetDescription()},{GetPoints()},{_IsComplete}";
+        return $"SimpleGoal,{GetName()},{GetDescription()},{GetPoints()},{_IsComplete}";
     }
 
 

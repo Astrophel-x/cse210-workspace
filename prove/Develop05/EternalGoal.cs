@@ -46,6 +46,6 @@ class EternalGoal : Goal
 //computer save
     public override string GetSaveString()
     {
-        return $"EternalGoal:{GetName()},{GetDescription()},{GetPoints()},{_iterations}";
+        return $"EternalGoal,{GetName()},{GetDescription()},{GetPoints()},{_iterations}";
     }
 }

@@ -3,6 +3,8 @@
 
 // and also menu but didn't want to make file name longer
 
+using System.Drawing;
+
 class GoalTracker
 {
     
@@ -46,7 +48,7 @@ class GoalTracker
             Console.WriteLine("1. Create New Simple Goal.");
             Console.WriteLine("2. Create New Checklist Goal.");
             Console.WriteLine("3. Create New Eternal Goal.");
-            Console.WriteLine("4. Mark Current Goal As Complete. ");
+            Console.WriteLine("4. Mark Active Goal As Complete. ");
             Console.WriteLine("5. Record Completed Goal.");
             Console.WriteLine("6. Show List of All Goals");
             Console.WriteLine("7. View Total Score.");
@@ -140,9 +142,45 @@ class GoalTracker
 
     }
 
+// mark active goal as complete
+
+    public void MarkGoalAsComplete(Goal goal)
+    {
+        //bool wasComplete = goal.IsComplete();
+
+        if (goal is ChecklistGoal c)
+        {
+            int pointsEarned = c.PointsEarned();
+
+            _pointsOverall += pointsEarned;
+
+        }
+        else
+        {
+            goal.RecordEvent();
+            _pointsOverall += goal.GetPoints();
+        }
+
+
+    }
+
+
+
     // record completed event
 
+    public void RecordPriorGoal()
+    {
+        GetUserCompletedGoalInfo(out string name, out string description, out int points);
 
+        SimpleGoal newSimple = new SimpleGoal(name, description, points);
+
+        _pointsOverall += points;
+
+        _goals.Add(newSimple);
+
+
+
+    }
 
 // show list of all goals
 
@@ -209,9 +247,114 @@ class GoalTracker
 
     // save
 
+    public void Save()
+    {
+        Console.Write("What would you like to name your profile? Be sure to include '.txt' at the end.");
+        string profileName = Console.ReadLine();
 
+        using (StreamWriter sw = new StreamWriter(profileName))
+        {
+            sw.WriteLine(_pointsOverall);
+
+            foreach (Goal goal in _goals)
+            {
+                sw.WriteLine(goal.GetSaveString());
+            }
+        }
+        
+    }
 
     // load
+
+    public void Load()
+    {
+        Console.WriteLine("What is the filename of the profile you would like to load? ");
+        Console.Write("> ");
+        string userInputFilename = Console.ReadLine();
+
+        if (!File.Exists(userInputFilename))
+        {
+            Console.WriteLine("File not found.");
+            return;
+        }
+
+        string[] lines = System.IO.File.ReadAllLines(userInputFilename);
+
+        _goals.Clear();
+
+//snag overall pts from top
+        _pointsOverall = int.Parse(lines[0]);
+        
+
+        foreach (string line in lines)
+        {
+            
+            if (line.StartsWith("SimpleGoal"))
+            {
+                string[] parts = line.Split(',');
+                string name = parts[1];
+                string description = parts[2];
+                int points = int.Parse(parts[3]);
+                bool IsComplete = bool.Parse(parts[4]);
+
+                SimpleGoal goal = new SimpleGoal(name, description, points);
+                if (IsComplete)
+                {
+                    goal.RecordEvent();
+                }
+
+                _goals.Add(goal);
+
+            }
+
+            else if (line.StartsWith("EternalGoal,"))
+            {
+                string[] parts = line.Split(',');
+                string name = parts[1];
+                string description = parts[2];
+                int points = int.Parse(parts[3]);
+                int iterations = int.Parse(parts[4]);
+
+                EternalGoal goal = new EternalGoal(name, description, points);
+
+                for (int i = 0; i < iterations; i ++)
+                {
+                    goal.RecordEvent();
+                }
+
+                _goals.Add(goal);
+            }
+
+            else if (line.StartsWith("ChecklistGoals"))
+            {
+                string[] parts = line.Split(',');
+                string name = parts[1];
+                string description = parts[2];
+                int points = int.Parse(parts[3]);
+                bool IsComplete = bool.Parse(parts[4]);
+                int amtComplete = int.Parse(parts[5]);
+                int iterations = int.Parse(parts[6]);
+                int pointsBonus = int.Parse(parts[7]);
+
+                ChecklistGoal goal = new ChecklistGoal(name, description, points, iterations, pointsBonus);
+
+                for (int i = 0; i < amtComplete; i ++)
+                {
+                    goal.RecordEvent();
+                }
+                if (IsComplete)
+                {
+                    //do nothing i am pretty sure
+                }
+
+                _goals.Add(goal);
+            }
+
+        }
+
+        Console.WriteLine("Profile Loaded!");
+
+    }
 
 
 

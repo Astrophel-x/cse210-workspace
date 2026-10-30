@@ -49,6 +49,33 @@ class ChecklistGoal : Goal
 
     }
 
+    public int GetBonusPoints()
+    {
+        return _pointsBonus;
+    }
+
+//logic for point awarding
+
+    public int PointsEarned()
+    {
+        //i have completed this goal so the count goes up
+        int pointsNormalCheck = _amtComplete + 1;
+        
+        //i call the normal amt of points
+        int pointsEarned = GetPoints();
+
+        //if the counter matches iterations then I have fulfilled the target goal
+        if (pointsNormalCheck == _iterations)
+        {
+            return pointsEarned + _pointsBonus;
+        }
+        else
+        {
+            return pointsEarned;
+        }
+
+    }
+
 
     // summary for human eyes
     public override string GetGoalSummary()
@@ -57,13 +84,14 @@ class ChecklistGoal : Goal
     }
 
 
+
     // savestring for computer 
 
     // (name, description, points, bool, amtcompltere, iterations, bonus points) *might not need bool*
 
     public override string GetSaveString()
     {
-        return $"ChecklistGoal:{GetName()},{GetDescription()},{GetPoints()},{IsComplete()},{_amtComplete},{_iterations},{_pointsBonus}";
+        return $"ChecklistGoal,{GetName()},{GetDescription()},{GetPoints()},{IsComplete()},{_amtComplete},{_iterations},{_pointsBonus}";
     }
 
 }
