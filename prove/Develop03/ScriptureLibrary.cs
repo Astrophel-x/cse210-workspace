@@ -7,7 +7,7 @@ public class ScriptureLibrary
 {
     private List<Scripture> _scriptures = new List<Scripture>();
 
-    string filename = "doctrinalMasterDAndC.txt";
+    string filename = "doctrinalMasteryDAndC.txt";
     string filepathRelative;
     
     public void LoadScripture(string filename)
