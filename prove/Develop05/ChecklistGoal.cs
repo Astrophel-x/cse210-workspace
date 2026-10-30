@@ -50,6 +50,13 @@ class ChecklistGoal : Goal
     }
 
 
+    // summary for human eyes
+    public override string GetGoalSummary()
+    {
+        return $"{GetStatus()} - {GetName} - {GetPoints()}";
+    }
+
+
     // savestring for computer 
 
     // (name, description, points, bool, amtcompltere, iterations, bonus points) *might not need bool*

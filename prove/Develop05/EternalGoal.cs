@@ -34,6 +34,16 @@ class EternalGoal : Goal
         }
     }
 
+
+    //human eyes
+
+    public override string GetGoalSummary()
+    {
+        return $"{GetName()} - {GetPoints()} - {GetPoints()} - {GetStatus()}";
+    }
+
+
+//computer save
     public override string GetSaveString()
     {
         return $"EternalGoal:{GetName()},{GetDescription()},{GetPoints()},{_iterations}";

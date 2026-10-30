@@ -41,11 +41,11 @@ public abstract class Goal
     {
         if (IsComplete() == true)
         {
-            return $"[X] {GetName()} : {GetDescription()}";
+            return $"[X] {GetName()} - {GetDescription()} - {GetPoints()}";
         }
         else
         {
-            return $"[ ] {GetName()} : {GetDescription()}";
+            return $"[ ] {GetName()} - {GetDescription()} - {GetPoints()}";
         }
     }
 

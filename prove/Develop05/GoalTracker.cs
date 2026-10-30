@@ -39,26 +39,30 @@ class GoalTracker
     public void DisplayMenu()
     {
         string userInput = "";
-        while (userInput != "8")
+        while (userInput != "10")
         {
             Console.WriteLine("Welcome to Eternal Quest.");
             Console.WriteLine("Please choose from the following options: ");
             Console.WriteLine("1. Create New Simple Goal.");
             Console.WriteLine("2. Create New Checklist Goal.");
             Console.WriteLine("3. Create New Eternal Goal.");
-            Console.WriteLine("4. Record Completed Goal.");
-            Console.WriteLine("Show List of All Goals");
-            Console.WriteLine("5. View Total Score.");
-            Console.WriteLine("6. Save Current Goals and Score");
-            Console.WriteLine("7. Load Other Goal and Score Profile");
-            Console.WriteLine("8. Quit.");
+            Console.WriteLine("4. Mark Current Goal As Complete. ");
+            Console.WriteLine("5. Record Completed Goal.");
+            Console.WriteLine("6. Show List of All Goals");
+            Console.WriteLine("7. View Total Score.");
+            Console.WriteLine("8. Save Current Goals and Score");
+            Console.WriteLine("9. Load Other Goal and Score Profile");
+            Console.WriteLine("10. Quit.");
 
 
             if (userInput == "1")
             {
                 CreateSimpleGoal();                
             }
-
+            else if (userInput == "2")
+            {
+                
+            }
 
 
         }
@@ -137,5 +141,83 @@ class GoalTracker
     }
 
     // record completed event
+
+
+
+// show list of all goals
+
+    public void DisplayGoalsAll()
+    {   
+        Console.WriteLine("Would you like to see all active goals or a complete list? \n1. Active Goals\n2. All Goals");
+        Console.Write("\n> ");
+        string userInputGoalList = Console.ReadLine();
+
+        if (userInputGoalList == "1")
+        {
+            DisplayGoalsActive();
+        }
+
+
+        if (userInputGoalList == "2")
+        {    
+            if (_goals.Count == 0)
+            {
+                Console.WriteLine("No goals! Let's get started!");
+            }
+            else
+            {
+                Console.WriteLine("");
+                for (int i = 0; i < _goals.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {_goals[i].GetGoalSummary()}");
+                }
+            }
+        }
+    }
+
+    // separate method for displaying active goals
+
+    public void DisplayGoalsActive()
+    {
+        bool active = false;
+
+        int j = 1;
+
+        foreach (Goal goal in _goals)
+        {
+            if (!goal.IsComplete())
+            {
+                Console.WriteLine($"{j}. goal.GetGoalSummary()");
+                active = true;
+                j ++;
+            }
+            
+        }
+
+        if (!active)
+        {
+            Console.WriteLine("No active goals! Let's make a new one!");
+        }
+    }
+
+
+    // display total
+    public void DisplayPointsOverall()
+    {
+        Console.WriteLine($"Your point total is: {_pointsOverall}.");
+    }
+
+    // save
+
+
+
+    // load
+
+
+
+
+
+
+
 
 }
