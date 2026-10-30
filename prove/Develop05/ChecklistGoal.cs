@@ -25,7 +25,7 @@ class ChecklistGoal : Goal
 
     public override bool IsComplete()
     {
-        if (_amtComplete == _iterations)
+        if (_amtComplete >= _iterations)
         {
             return true;
         }
