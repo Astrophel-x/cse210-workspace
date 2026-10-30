@@ -3,7 +3,7 @@
 
 // and also menu but didn't want to make file name longer
 
-using System.Drawing;
+
 
 class GoalTracker
 {
@@ -56,6 +56,9 @@ class GoalTracker
             Console.WriteLine("9. Load Other Goal and Score Profile");
             Console.WriteLine("10. Quit.");
 
+            Console.Write("\n> ");
+            userInput = Console.ReadLine();
+
 
             if (userInput == "1")
             {
@@ -63,9 +66,45 @@ class GoalTracker
             }
             else if (userInput == "2")
             {
-                
+                CreateChecklistGoal();
             }
-
+            else if (userInput == "3")
+            {
+                CreateEternalGoal();
+            }
+            else if (userInput == "4")
+            {
+                MarkGoalAsComplete();
+            }
+            else if (userInput == "5")
+            {
+                RecordPriorGoal();
+            }
+            else if (userInput == "6")
+            {
+                DisplayGoalsAll();
+            }
+            else if (userInput == "7")
+            {
+                DisplayPointsOverall();
+            }
+            else if (userInput == "8")
+            {
+                Save();
+            }
+            else if (userInput == "9")
+            {
+                Load();
+            }
+            else if (userInput == "10")
+            {
+                Console.WriteLine("Thank you! Goodbye.");
+                Environment.Exit(0);
+            }
+            else
+            {
+                Console.WriteLine("Invalid Input.");
+            }
 
         }
     }
@@ -144,22 +183,58 @@ class GoalTracker
 
 // mark active goal as complete
 
-    public void MarkGoalAsComplete(Goal goal)
+    public void MarkGoalAsComplete()
     {
         //bool wasComplete = goal.IsComplete();
 
-        if (goal is ChecklistGoal c)
+        List<Goal> activeGoals = _goals;
+        if (activeGoals.Count == 0)
         {
-            int pointsEarned = c.PointsEarned();
+            Console.WriteLine("No active goals! Let's set one!");
+            return;
+        }
 
-            _pointsOverall += pointsEarned;
+        Console.WriteLine("Active goals:");
+        DisplayGoalsActive();
+
+        Console.WriteLine("Which goal would you like to mark as complete? ");
+        Console.Write("> ");
+
+        int userInputChosenGoal = int.Parse(Console.ReadLine());
+
+        int index = userInputChosenGoal - 1;
+
+        Goal chosenGoal = activeGoals[index];
+
+        
+        
+
+
+        if (chosenGoal is SimpleGoal s)
+        {
+            s.RecordEvent();
+            _pointsOverall += s.GetPoints();
+        }
+        else if (chosenGoal is EternalGoal e)
+        {
+            e.RecordEvent();
+            _pointsOverall += e.GetPoints();
+        }
+
+        else if (chosenGoal is ChecklistGoal c)
+        {
+            c.RecordEvent();
+
+            _pointsOverall += c.PointsEarned();
 
         }
-        else
-        {
-            goal.RecordEvent();
-            _pointsOverall += goal.GetPoints();
-        }
+        // else
+        // {
+        //     chosenGoal.RecordEvent();
+        //     _pointsOverall += goal.GetPoints();
+        // }
+
+        Console.WriteLine($"Done. Your new point total is {_pointsOverall}.");
 
 
     }
@@ -175,6 +250,7 @@ class GoalTracker
         SimpleGoal newSimple = new SimpleGoal(name, description, points);
 
         _pointsOverall += points;
+        newSimple.RecordEvent();
 
         _goals.Add(newSimple);
 
@@ -225,7 +301,7 @@ class GoalTracker
         {
             if (!goal.IsComplete())
             {
-                Console.WriteLine($"{j}. goal.GetGoalSummary()");
+                Console.WriteLine($"{j}. {goal.GetGoalSummary()}");
                 active = true;
                 j ++;
             }
@@ -291,7 +367,7 @@ class GoalTracker
             
             if (line.StartsWith("SimpleGoal"))
             {
-                string[] parts = line.Split(',');
+                string[] parts = line.Split('|');
                 string name = parts[1];
                 string description = parts[2];
                 int points = int.Parse(parts[3]);
@@ -307,9 +383,9 @@ class GoalTracker
 
             }
 
-            else if (line.StartsWith("EternalGoal,"))
+            else if (line.StartsWith("EternalGoal"))
             {
-                string[] parts = line.Split(',');
+                string[] parts = line.Split('|');
                 string name = parts[1];
                 string description = parts[2];
                 int points = int.Parse(parts[3]);
@@ -325,9 +401,9 @@ class GoalTracker
                 _goals.Add(goal);
             }
 
-            else if (line.StartsWith("ChecklistGoals"))
+            else if (line.StartsWith("ChecklistGoal"))
             {
-                string[] parts = line.Split(',');
+                string[] parts = line.Split('|');
                 string name = parts[1];
                 string description = parts[2];
                 int points = int.Parse(parts[3]);

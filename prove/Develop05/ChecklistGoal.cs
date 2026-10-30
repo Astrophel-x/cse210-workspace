@@ -59,13 +59,13 @@ class ChecklistGoal : Goal
     public int PointsEarned()
     {
         //i have completed this goal so the count goes up
-        int pointsNormalCheck = _amtComplete + 1;
+        int countNew = _amtComplete;
         
         //i call the normal amt of points
         int pointsEarned = GetPoints();
 
         //if the counter matches iterations then I have fulfilled the target goal
-        if (pointsNormalCheck == _iterations)
+        if (countNew == _iterations)
         {
             return pointsEarned + _pointsBonus;
         }
@@ -80,7 +80,7 @@ class ChecklistGoal : Goal
     // summary for human eyes
     public override string GetGoalSummary()
     {
-        return $"{GetStatus()} - {GetName} - {GetPoints()}";
+        return $"{GetStatus()} - {GetName()} - {GetPoints()}";
     }
 
 
@@ -91,7 +91,7 @@ class ChecklistGoal : Goal
 
     public override string GetSaveString()
     {
-        return $"ChecklistGoal,{GetName()},{GetDescription()},{GetPoints()},{IsComplete()},{_amtComplete},{_iterations},{_pointsBonus}";
+        return $"ChecklistGoal|{GetName()}|{GetDescription()}|{GetPoints()}|{IsComplete()}|{_amtComplete}|{_iterations}|{_pointsBonus}";
     }
 
 }

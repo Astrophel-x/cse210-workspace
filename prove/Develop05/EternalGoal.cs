@@ -39,13 +39,13 @@ class EternalGoal : Goal
 
     public override string GetGoalSummary()
     {
-        return $"{GetName()} - {GetPoints()} - {GetPoints()} - {GetStatus()}";
+        return $"{GetName()} - {GetDescription()} - {GetPoints()} - {GetStatus()}";
     }
 
 
 //computer save
     public override string GetSaveString()
     {
-        return $"EternalGoal,{GetName()},{GetDescription()},{GetPoints()},{_iterations}";
+        return $"EternalGoal|{GetName()}|{GetDescription()}|{GetPoints()}|{_iterations}";
     }
 }
