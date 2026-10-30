@@ -416,7 +416,7 @@ class GoalTracker
 
                 for (int i = 0; i < amtComplete; i ++)
                 {
-                    goal.RecordEvent();
+                    goal.SetAmtComplete(amtComplete);
                 }
                 if (IsComplete)
                 {

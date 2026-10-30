@@ -76,6 +76,11 @@ class ChecklistGoal : Goal
 
     }
 
+    public void SetAmtComplete(int amt)
+    {
+        _amtComplete = amt;
+    }
+
 
     // summary for human eyes
     public override string GetGoalSummary()
