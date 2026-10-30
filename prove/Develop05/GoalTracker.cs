@@ -44,6 +44,7 @@ class GoalTracker
         while (userInput != "10")
         {
             Console.WriteLine("Welcome to Eternal Quest.");
+            Console.WriteLine($"Your current rank is: {GetTitle()}");
             Console.WriteLine("Please choose from the following options: ");
             Console.WriteLine("1. Create New Simple Goal.");
             Console.WriteLine("2. Create New Checklist Goal.");
@@ -430,6 +431,42 @@ class GoalTracker
 
         Console.WriteLine("Profile Loaded!");
 
+    }
+
+    public string GetTitle()
+    {
+        if (_pointsOverall > 3000)
+        {
+            return "Legend";
+        }
+        else if (_pointsOverall > 2500)
+        {
+            return "Hero";
+        }
+
+        else if (_pointsOverall > 2000)
+        {
+            return "Vanguard";
+        }
+
+        else if (_pointsOverall > 1500)
+        {
+            return "Mercenary";
+        }
+
+        else if (_pointsOverall > 1000)
+        {
+            return "Recruit";
+        }
+        else if (_pointsOverall > 500)
+        {
+            return "Commoner";
+
+        }
+        else
+        {
+            return "Unknown";
+        }
     }
 
 
