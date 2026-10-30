@@ -50,11 +50,13 @@ class ChecklistGoal : Goal
     }
 
 
-    // savestring
+    // savestring for computer 
+
+    // (name, description, points, bool, amtcompltere, iterations, bonus points) *might not need bool*
 
     public override string GetSaveString()
     {
-        return $"ChecklistGoal:{GetName()},"
+        return $"ChecklistGoal:{GetName()},{GetDescription()},{GetPoints()},{IsComplete()},{_amtComplete},{_iterations},{_pointsBonus}";
     }
 
 }
